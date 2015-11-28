@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="all" />
+<title>{{ page.title }} - {{ site.name }}</title>
+<meta name="description" content="{{ page.excerpt | strip_html | strip_newlines }}" />
+<link rel="stylesheet" type="text/css" href="/css/style.css" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<!--[if (lt IE 9) & (!IEMobile)]>
+<link rel="stylesheet" type="text/css" href="/css/ie.css" />
+<![endif]-->
+</head>
+<body>
+{% if page.weixin-image %}
+<img src="{{ page.weixin-image}}" alt="weixin-content" class="weixin-image"/>
+{% endif %}
+
+    <div class="single-post">
+        <h1>{{ page.title }}</h1>
+        <span class="post-meta"><a href="{{ site.url}}">{{ site.author }}</a> {{ page.date | date: "%Y年 %m月 %d日" }}</span>
+
+        {{ content }}
+        {% include article-ads.html %}
+        <p class='previous-next-nav'><a href="{{page.next.url}}" class="next">{{page.next.title}} &rarr;</a>
+        <a href="{{page.previous.url}}" class="previous">&larr; {{page.previous.title}}</a>
+        </p>
+
+        {% include discus.html %}
+    </div>
+
+	{% include footer.html %}
+    {% include ga.html %}
+
+</body>
+</html>

@@ -1,0 +1,6 @@
+baseurl: /jekyll_demo
+title: 易芝林  Blog
+author: zlyi
+email: yzllin@foxmail.com
+permalink: weblog/:title/ 
+markdown: kramdown
