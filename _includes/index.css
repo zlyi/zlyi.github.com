@@ -1,0 +1,146 @@
+html,
+body,
+div,
+span,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+img                         { margin:0; padding:0; }
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+nav,
+section                         { display: block; }
+
+html                           { font-size: 62.5%;font-family: Tahoma;}
+body                           { margin: 0; font-size: 1.4em;}
+a                           { color:#9c6; text-decoration:none; -webkit-transition:color 0.2s ease-in-out; -moz-transition:color 0.2s ease-in-out; -o-transition:color 0.2s ease-in-out; transition:color 0.2s ease-in-out; }
+h1, h2, h3, h4, h5, h6 { font-weight:normal; }
+
+  /* ----------------------------------------------------------------------------------------------------------
+  08 Blog Archive ---------------------------------------------------------------------------------------------
+  ---------------------------------------------------------------------------------------------------------- */
+  .archive-page p,
+  .archive-page li                          { padding:0.5em 0; }
+  .archive-page {margin-top: -35px;}
+  .archive-page h2 {color:rgba(0,0,0,0.3);font-size: 4em;margin:0 0 10px;}
+  .archive-page h3 {color:rgba(0,0,0,0.3);font-size: 2em;margin: 10px 0;}
+  .archive-page a {color:#333;}
+  .archive-page span.date                    { color:rgba(0,0,0,0.3); display:block; }
+  .archive-page span.category-tag {color:rgba(0,0,0,0.3);}
+
+
+  /* ----------------------------------------------------------------------------------------------------------
+  04 Basic Layout ---------------------------------------------------------------------------------------------
+  ---------------------------------------------------------------------------------------------------------- */
+  div.container {overflow: hidden;*zoom:1;}
+  div.primary                 { background:#f6f6f6; padding:10%; position: relative; /*outline:1px solid red;*/ }
+  div.content                 { padding:10%; position: relative;/*outline:1px solid blue;*/ }
+  div.ads                     { display:none; }
+  div.blog {line-height: 1.5;} 
+  .primary h1                          { color:rgba(0,0,0,0.3);font-size: 16px; }
+  .primary h1 a                        { color:#333; }
+  .primary h1 a:hover                  { color:#9c6; }
+    /* 02f - Paragraphs, Lists, and More */
+  figcaption,
+  p.copyright,
+  div.primary h2,
+  div.primary p,
+  div.primary span.fusionentire { color:rgba(0,0,0,0.3); line-height:1.5em; padding:0; }
+  p.note                      { padding-bottom:1em; }
+  p.continue                  { padding-top:2em; }
+  p.copyright               { padding:8em 0 1em 0; text-align: center;position: relative;}
+  cite                        { font-style:normal; }
+
+  /* ----------------------------------------------------------------------------------------------------------
+  06 Ads ------------------------------------------------------------------------------------------------------
+  ---------------------------------------------------------------------------------------------------------- */
+
+  div.fusionads a,
+  div.authenticjobs p a       { border:none; color:rgba(0,0,0,0.3); }
+  div.fusionads p             { padding-top:1em; }
+  div.fusionads img           { margin:1em 0; max-width:100%;}
+  div.authenticjobs img       { float:left; margin:0.5em 1em 1em 0; }
+  div.authenticjobs p.job-listings + p { clear:both; }
+
+  /* ----------------------------------------------------------------------------------------------------------
+  11 Media Queries (using a mobile-first approach) ------------------------------------------------------------
+  ---------------------------------------------------------------------------------------------------------- */
+
+  /* 11a - 720 up */
+  @media screen and (min-width:720px) {
+
+    html                        { padding:0 6%; }
+    body                        { margin:0 auto; }
+    div.fauxcolumn              { bottom:0; left:0; position:fixed; top:0; width:34.755%; background:#f6f6f6; }
+
+    div.primary                 { background:none; float:left; padding:100px 0; width:32%; }
+    div.primary div div         { border-top:1px solid rgba(0,0,0,0.05); padding:3em 0; }
+    div.content                 { float:left; padding:100px 0 ; width:68%; }
+    div.ads                     { display:block; }
+    .primary h1,
+    .primary p                   { width:85%; }
+    div.ads span                { display:block; /* Purely for the sake of the span */ width:90%; }
+
+    header nav ul               { padding:2em 0 3em 0; }
+    header nav ul li            { display:block; padding:0; }
+
+    div.content-inner                { margin:0 auto;width:90%;}
+    form input,
+    form textarea               { margin-left:5%; }
+    div.content blockquote p    { padding-left:1em; }
+
+    article figure figcaption   { padding-left:5%; }
+
+    div#comments ol li article header div.gravatar-container { left:5%; }
+    div#comments ol li article header h3,
+    div#comments ol li article header h3 + p { padding:0 0 0 20%; }
+
+  }
+
+  /* 11b - 880 up */
+  @media screen and (min-width:880px) {
+
+    h2#art-direction            { padding-left:15%; }
+
+    div.content-inner { width:80%; /* 190 / 660 = 0.28787 */ }
+    form input,
+    form textarea               { margin-left:28.787%; /* 190 / 660 = 0.28787 */ width:71%; }
+
+    article figure figcaption   { left:0; padding:0.825em 0 0 5%; position:absolute; width:25%; }
+
+    div#comments ol li article header div.gravatar-container { left:15%; }
+    div#comments ol li article header h3,
+    div#comments ol li article header h3 + p { padding:0 0 0 28.787%; }
+
+  }
+
+  /* 11c - 1350 up */
+  @media screen and (min-width:1350px) {
+    html                        { padding:0 16%; }
+    div.fauxcolumn              { width:37.75%; }
+  }
+
+  /* 11d - 1700 up */
+  @media screen and (min-width:1700px) {
+    html                        { padding:0 23%; }
+    div.fauxcolumn              { width:40.25%; }
+  }
+
+  /* 11e - 2000 up */
+  @media screen and (min-width:2000px) {
+    html                        { padding:0 30%; }
+    div.fauxcolumn              { width:42.85%; }
+  }
