@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="all" />
+<title>Asp.Net中进行数据验证方式 - </title>
+<meta name="description" content="1. 利用传统的调用方法进行验证。" />
+<link rel="stylesheet" type="text/css" href="/css/style.css" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<!--[if (lt IE 9) & (!IEMobile)]>
+<link rel="stylesheet" type="text/css" href="/css/ie.css" />
+<![endif]-->
+</head>
+<body>
+
+
+    <div class="single-post">
+        <h1>Asp.Net中进行数据验证方式</h1>
+        <span class="post-meta"><a href="">zlyi</a> [后端技术 ] 2014年 06月 04日 </span>
+
+        <p><strong>1. 利用传统的调用方法进行验证。</strong></p>
+
+<p>优点：结构清晰，容易开发和理解
+缺点：增加代码量，不好扩展和维护。
+实例代码：
+ <code>C# 
+   if ( string.IsNullOrEmpty(subItemID))
+            {
+                return 0;
+            }
+            else
+            {
+            }
+ </code>
+<strong>2.利用C#提供Attribute(特性)进行验证。</strong></p>
+
+<p>优点：结构清晰，代码简洁。
+缺点：开发较复杂。
+参考网址： http://www.cnblogs.com/zhouqianhua/archive/2010/10/15/1852559.html
+实例代码：</p>
+
+<p>```C#</p>
+
+<p>public class OrderRequest{ 
+          /// &lt;summary&gt;
+          /// 订单号
+          /// &lt;/summary&gt;
+          [Validate(ValidateType.IsEmpty)]
+          public string OrderNo { get; set; }
+           /// &lt;summary&gt;
+          /// 商品名称
+          /// &lt;/summary&gt;
+                                               [Validate(ValidateType.IsEmpty|ValidateType.MaxLength,MaxLength = 50)]
+         public string CommodityName { get; set; }
+```</p>
+
+<p><strong>3.利用FluentValidation空间进行验证。</strong>
+优点：利用表达式语法链式编程，使得验证组件与实体分开，更便于组建开发。
+缺点：增加前期学习成本。
+官方网址：http://fluentvalidation.codeplex.com/
+实例代码：</p>
+
+<p>```  C#</p>
+
+<p>using FluentValidation;</p>
+
+<p>public class CustomerValidator: AbstractValidator<customer> {
+  public CustomerValidator() {
+    RuleFor(customer =&gt; customer.Surname).NotEmpty();
+    RuleFor(customer =&gt; customer.Forename).NotEmpty().WithMessage("Please specify a first name");
+    RuleFor(customer =&gt; customer.Discount).NotEqual(0).When(customer =&gt; customer.HasDiscount);
+    RuleFor(customer =&gt; customer.Address).Length(20, 250);
+    RuleFor(customer =&gt; customer.Postcode).Must(BeAValidPostcode).WithMessage("Please specify a valid postcode");
+  }</customer></p>
+
+<p>private bool BeAValidPostcode(string postcode) {
+    // custom postcode validating logic goes here
+  }
+}</p>
+
+<p>Customer customer = new Customer();
+CustomerValidator validator = new CustomerValidator();
+ValidationResult results = validator.Validate(customer);</p>
+
+<p>bool validationSucceeded = results.IsValid;
+IList<validationfailure> failures = results.Errors;
+```</validationfailure></p>
+
+        
+        <p class='previous-next-nav'><a href="/weblog/aspnet-export-excel/" class="next">asp.net 导出数据至Excel &rarr;</a>
+        <a href="/weblog/iis-log-tools/" class="previous">&larr; IIS日志分析工具</a>
+        </p>
+
+            <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'yuguo'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    
+    </div>
+
+	<p class="copyright">&copy; 2013&#8201;&ndash;&#8201;2015 zlyi. Powered by <a href="https://github.com/mojombo/jekyll">Jekyll</a> and host by <a href="https://github.com/zlyi">Github</a>。
+</p>
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?c33d97d320db37c11c266139d26acca0";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+</body>
+</html>

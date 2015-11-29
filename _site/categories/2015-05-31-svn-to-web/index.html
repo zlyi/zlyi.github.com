@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="all" />
+<title>svn同步更新至Web目录 - </title>
+<meta name="description" content="" />
+<link rel="stylesheet" type="text/css" href="/css/style.css" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<!--[if (lt IE 9) & (!IEMobile)]>
+<link rel="stylesheet" type="text/css" href="/css/ie.css" />
+<![endif]-->
+</head>
+<body>
+
+
+    <div class="single-post">
+        <h1>svn同步更新至Web目录</h1>
+        <span class="post-meta"><a href="">zlyi</a> [服务器 ] 2015年 05月 31日 </span>
+
+        <p>思路：<br />
+找 到SVN Server中的仓库（Repositories）文件夹的位置，在相应的项目文件夹中找到hooks文件夹。在该文件夹中添加一个post- commit文件；当有commit动作发生时（提交到SVN Server时）就会执行这个post-commit文件，在该文件实现数据的复制。</p>
+
+<p>实例：<br />
+环境：SVN Server与测试用的Web Server在同一台Windows系统服务器上，SVN Server使用的是VisualSVN，Web Server使用的是Apache。项目的名称为test，客户端使用TortoiseSVN。<br />
+首先在apache的www目录下创建一个文件夹，进行checkout，输入需要用户名和密码，将test项目取出到该文件夹中。<br />
+找到SVN Server的Repositories目录，在Repositories/test/hooks文件夹中创建post-commit.bat，在其中写入命令：<br />
+“C:\Program Files\VisualSVN Server\bin\svn.exe” update “D:\www\test” –quiet –username name –password pwd</p>
+
+<p>（即执行svn update命令，请自行替换用户名和密码）</p>
+
+<p>也可以这样写</p>
+
+<p>@echo off
+SET REPOS=%1
+SET USER=%2
+SET SVN=”E:/Program Files/VisualSVN Server/bin/svn.exe”
+SET DIR=”E:/wamp2/www” 
+(call %SVN% update %DIR% –username izaodao –password izaodao –non-interactive)</p>
+
+<p>大功告成。<br />
+注：</p>
+
+<p>1.web目录下一定要用TortoiseSVN checkout出Repositories的代码</p>
+
+<ol>
+  <li>-username izaodao –password izaodao
+izaodao替换为登录svn的用户名和密码</li>
+</ol>
+
+<p>在使用中可能会遇到的错误排除 ：</p>
+
+<p>1.Error: svn: 解析“D:\www\test”出错，或svn: E020024: Error resolving case of ‘D:\www\test”‘，则有可能是因为目标文件名之后多加了”\”</p>
+
+<p>2.“D:\www\test”或Skipped ‘d:\www\test’,则可能是因为没有执行步骤提交更新处理文件 即上面提到的.bat文件，svn.exe不认识目标文件夹</p>
+
+<ol>
+  <li>Working copy ‘D:\www\test’ is too old，则可能需要使用sven.exe upgrade命令重新整理一下目标文件夹 或者重新安装一个较高客户端版本至少要2.6以上吧</li>
+</ol>
+
+<p>4.还有一个注意问题——Visual SVN Server的权限，否则可能会出现下列错误：
+post-commit hook failed (exit code 1) with output:
+svn: E155004: Working copy ‘D:\www\Test’ locked
+svn: E200031: sqlite: attempt to write a readonly database
+svn: E200031: sqlite: attempt to write a readonly database
+svn: run ‘svn cleanup’ to remove locks (type ‘svn help cleanup’ for details)
+原因是Visual SVN Server服务的执行权限不够，不能对指定目录做读写操作。解决办法，修改Visual SVN Server 
+     简单操作 win+R  运行 services.msc 找到visual svn server 服务 右键属性 登陆面板 设置桌面交互或者管理员权限再试</p>
+
+<p>svn:E175013:Access to ‘xxxxx’ forbidden
+所以更新用户的权限</p>
+
+<p>　　—- 
+　　</p>
+
+        
+        <p class='previous-next-nav'><a href="" class="next"> &rarr;</a>
+        <a href="" class="previous">&larr; </a>
+        </p>
+
+            <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'yuguo'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    
+    </div>
+
+	<p class="copyright">&copy; 2013&#8201;&ndash;&#8201;2015 zlyi. Powered by <a href="https://github.com/mojombo/jekyll">Jekyll</a> and host by <a href="https://github.com/zlyi">Github</a>。
+</p>
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?c33d97d320db37c11c266139d26acca0";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+</body>
+</html>

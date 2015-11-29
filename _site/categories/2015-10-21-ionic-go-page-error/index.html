@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="all" />
+<title>ionic页面中页面切换问题 - </title>
+<meta name="description" content="" />
+<link rel="stylesheet" type="text/css" href="/css/style.css" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<!--[if (lt IE 9) & (!IEMobile)]>
+<link rel="stylesheet" type="text/css" href="/css/ie.css" />
+<![endif]-->
+</head>
+<body>
+
+
+    <div class="single-post">
+        <h1>ionic页面中页面切换问题</h1>
+        <span class="post-meta"><a href="">zlyi</a> [前端 ] 2015年 10月 20日 </span>
+
+        <p>在ionic页面中，不要使用a标签默认的href跳转，以及$state.go不然会导致页面变形，可使用  Angular-UI-Router ui-sref 指令。</p>
+
+<p>在一些特殊情况下，ui-sref的state参数是动态的，怎么办呢，我们知道官方是不支持动态传参的，在百思不得其解的时候，在github上发现了有人向官方提过这个问题，并引起了很大的讨论，很多人都遇到过这个问题。<a href="https://github.com/angular-ui/ui-router/issues/395">传送门</a>，我是参照@crisbeto 提供的指令方法实现的。实现方法如下：
+template:</p>
+<div page-state="" state="" id="123">
+
+js:
+    dir.directive('pageState', function () {
+            return {
+                restrict: 'EAC',
+                template: function (elem, attr) {
+                  
+                    var template='<a ui-sref="'+attr.state+'({Id:'+attr.id+'})"></a>';
+                                   
+                    return template;
+                }
+        };
+    })
+
+指令具体使用方法可参考：angularjs 指令详解 - template, restrict, replace
+  
+---- 
+
+　　 
+</div>
+
+        
+        <p class='previous-next-nav'><a href="" class="next"> &rarr;</a>
+        <a href="" class="previous">&larr; </a>
+        </p>
+
+            <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'yuguo'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    
+    </div>
+
+	<p class="copyright">&copy; 2013&#8201;&ndash;&#8201;2015 zlyi. Powered by <a href="https://github.com/mojombo/jekyll">Jekyll</a> and host by <a href="https://github.com/zlyi">Github</a>。
+</p>
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?c33d97d320db37c11c266139d26acca0";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="all" />
+<title>webapi支持Cors - </title>
+<meta name="description" content="可使用Ms 官方提供的组件" />
+<link rel="stylesheet" type="text/css" href="/css/style.css" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<!--[if (lt IE 9) & (!IEMobile)]>
+<link rel="stylesheet" type="text/css" href="/css/ie.css" />
+<![endif]-->
+</head>
+<body>
+
+
+    <div class="single-post">
+        <h1>webapi支持Cors</h1>
+        <span class="post-meta"><a href="">zlyi</a> [后端技术 ] 2015年 07月 11日 </span>
+
+        <h2 id="ms-">可使用Ms 官方提供的组件</h2>
+
+<p>1.Install-Package Microsoft.AspNet.WebApi.Cors</p>
+
+<p>2.在Web.config中设置
+<code class="highlighter-rouge">C#
+    &lt; httpProtocol&gt;
+      &lt; customHeaders&gt;
+        &lt; add name ="Access-Control-Allow-Origin " value ="* " /&gt;
+        &lt; add name ="Access-Control-Allow-Credentials " value ="true " /&gt;
+        &lt; add name ="Access-Control-Allow-Headers " value ="x-requested-with, content-type, accept, origin, authorization, bearer_token, ETag, Last-Modified, IF_MODIFIED_SINCE, location, version, platform, zip_code" /&gt;
+        &lt; add name ="Access-Control-Allow-Methods " value ="GET, POST, PUT, PATCH, DELETE, OPTIONS " /&gt;
+        &lt; add name ="Access-Control-Max-Age " value ="8400 " /&gt;
+      &lt;/ customHeaders&gt;
+    &lt;/ httpProtocol&gt;
+</code></p>
+
+<p><strong>注意点</strong>
+    1. 因为IIS默认会过滤OPE请求，所以在跨域之前，一定要检查web.config里是否有<remove name=" OPTIONSVerbHandler"></remove>，他会过滤OPTIONS请求，删除即可。
+     2.Access-Control-Allow-Origin一定要设置在所有属性之前，不然不能访问</p>
+
+<p>　　—- 
+　　</p>
+
+        
+        <p class='previous-next-nav'><a href="/weblog/web-api-support-cors/" class="next">webapi支持Cors &rarr;</a>
+        <a href="/weblog/web-api-study/" class="previous">&larr; Web Api/Restful 学习</a>
+        </p>
+
+            <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'yuguo'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    
+    </div>
+
+	<p class="copyright">&copy; 2013&#8201;&ndash;&#8201;2015 zlyi. Powered by <a href="https://github.com/mojombo/jekyll">Jekyll</a> and host by <a href="https://github.com/zlyi">Github</a>。
+</p>
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?c33d97d320db37c11c266139d26acca0";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="all" />
+<title>web api2 cors 無法put和delete的解決方法 - </title>
+<meta name="description" content="" />
+<link rel="stylesheet" type="text/css" href="/css/style.css" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<!--[if (lt IE 9) & (!IEMobile)]>
+<link rel="stylesheet" type="text/css" href="/css/ie.css" />
+<![endif]-->
+</head>
+<body>
+
+
+    <div class="single-post">
+        <h1>web api2 cors 無法put和delete的解決方法</h1>
+        <span class="post-meta"><a href="">zlyi</a> [后端技术 ] 2015年 06月 09日 </span>
+
+        <p>我是參考Bruce的此篇文章
+發現如果連架在iis上面的web api，put和delete會有問題，想說到底是專案上還是iis或者是client寫法錯誤，最後google大神終於發現問題出在web.config上面。</p>
+
+<p>```C#</p>
+<system.webserver>
+<modules> 
+      <remove name="WebDAVModule" /> 
+   </modules> 
+   <handlers> 
+      <remove name="WebDAV" /> 
+   </handlers> 
+</system.webserver>
+<p>```</p>
+
+<pre><code> ----  　　 
+</code></pre>
+
+        
+        <p class='previous-next-nav'><a href="" class="next"> &rarr;</a>
+        <a href="" class="previous">&larr; </a>
+        </p>
+
+            <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'yuguo'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    
+    </div>
+
+	<p class="copyright">&copy; 2013&#8201;&ndash;&#8201;2015 zlyi. Powered by <a href="https://github.com/mojombo/jekyll">Jekyll</a> and host by <a href="https://github.com/zlyi">Github</a>。
+</p>
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?c33d97d320db37c11c266139d26acca0";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+</body>
+</html>

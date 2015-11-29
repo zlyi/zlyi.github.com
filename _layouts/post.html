@@ -19,7 +19,7 @@
 
     <div class="single-post">
         <h1>{{ page.title }}</h1>
-        <span class="post-meta"><a href="{{ site.url}}">{{ site.author }}</a> {{ page.date | date: "%Y年 %m月 %d日" }}</span>
+        <span class="post-meta"><a href="{{ site.url}}">{{ site.author }}</a> [{{ page.categories}} ] {{ page.date | date: "%Y年 %m月 %d日" }} </span>
 
         {{ content }}
         {% include article-ads.html %}
