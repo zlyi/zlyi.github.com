@@ -3,8 +3,7 @@ layout: post
 title: my first blog
 date: 2013-06-06 00:37
 comments: true
-categories: [杂谈]
-category: test
+categories: [随笔] 
 
 ---
 
