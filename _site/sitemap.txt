@@ -60,3 +60,4 @@
 /weblog/suzhou-marathon-notes/
 /weblog/2013-year-end-review/
 /weblog/my-life-notes-19/
+/weblog/my-first-blog/
